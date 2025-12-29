@@ -9,7 +9,7 @@ namespace AnyBaseLibNext.Bases
         private string? ConnStr;
         private readonly List<QueryObject> ImportantQueries = [];
         private readonly List<QueryObject> CommonQueries = [];
-        private static System.Timers.Timer? aTimer;
+        private System.Timers.Timer? aTimer;
         private ConnectionState LastState = ConnectionState.Closed;
 
         public void Set(string db_name, string db_host, string db_user = "", string db_pass = "")
