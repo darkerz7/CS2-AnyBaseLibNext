@@ -62,7 +62,7 @@ namespace AnyBaseLibNext.Bases
 
         public void QueryAsync(string q, List<string>? args, Action<List<List<string?>>?>? action = null, bool non_query = false, bool important = false)
         {
-            var qo = new QueryObject(FixForSQLite(q), args, action, non_query);
+            var qo = new QueryObject(Common.RemoveTypeCasts(FixForSQLite(q)), args, action, non_query);
             var channel = important ? ImportantQueries.Writer : CommonQueries.Writer;
             if (!channel.TryWrite(qo)) Common.SafeInvoke(qo, null);
         }

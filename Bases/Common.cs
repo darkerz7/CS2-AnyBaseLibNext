@@ -119,8 +119,17 @@ namespace AnyBaseLibNext.Bases
             return QueryClearResult.Success;
         }
 
+        public static string RemoveTypeCasts(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+            return TypeCasts().Replace(input, "{ARG}");
+        }
+
         [GeneratedRegex("{ARG}")]
         private static partial Regex ARGRegex();
+
+        [GeneratedRegex(@"(\{ARG\})(::[a-zA-Z0-9_""\[\]]+)+")]
+        private static partial Regex TypeCasts();
     }
 
     enum QueryClearResult{ Success, ManyArgs, NotEnoughArg }
